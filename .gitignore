@@ -22,3 +22,5 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 /.vs/slnx.sqlite
+.vs/VSWorkspaceState.json
+.vs/frupkeep/v16/.suo
