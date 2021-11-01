@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import Welcome from './Components/Welcome';
 import Data from './Data/Data';
+import Shuffle from  './Utilities/Shuffle'
 
 function App() {
   return (

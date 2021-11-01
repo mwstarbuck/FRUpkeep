@@ -1,4 +1,6 @@
 
+import {shuffle} from '../Utilities/Shuffle';
+
 const ROULEUR_SETUP = [
     {
         number: 3,
@@ -71,6 +73,9 @@ function createCards(setup, cards){
 createCards(ROULEUR_SETUP, rouleurCards);
 createCards(SPRINTER_SETUP, sprinterCards);
 
+let shuffledDeck = [];
+shuffle(rouleurCards, shuffledDeck)
+
 console.log(rouleurCards);
-console.log(sprinterCards);
+console.log(shuffledDeck);
 
