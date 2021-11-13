@@ -1,5 +1,5 @@
 
-import {shuffle} from '../Utilities/Shuffle';
+import {shuffle, mix} from '../Utilities/Shuffle';
 
 const ROULEUR_SETUP = [
     {
@@ -74,8 +74,17 @@ createCards(ROULEUR_SETUP, rouleurCards);
 createCards(SPRINTER_SETUP, sprinterCards);
 
 let shuffledDeck = [];
-shuffle(rouleurCards, shuffledDeck)
-
+let redRouleurCards = [...rouleurCards];
+mix(redRouleurCards, shuffledDeck)
+redRouleurCards = [...shuffledDeck];
+shuffledDeck = [];
+let blueRouleurCards = [...rouleurCards];
+mix(blueRouleurCards, shuffledDeck)
+blueRouleurCards = [...shuffledDeck];
+console.log(redRouleurCards);
+console.log(blueRouleurCards);
 console.log(rouleurCards);
-console.log(shuffledDeck);
+for (let i = 0; i < 7; i++) {
+    redRouleurCards = shuffle(redRouleurCards);
+}
 
