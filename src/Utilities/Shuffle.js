@@ -6,7 +6,6 @@ function getRandom(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-//shuffle(0, 14);
 export function mix(set, shuffledCards) {
     let len = set.length;
     for (let i = 0; i < len; i++) {
