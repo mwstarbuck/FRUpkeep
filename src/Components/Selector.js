@@ -9,34 +9,35 @@ import Select from '@material-ui/core/Select';
 const useStyles = makeStyles((theme) => ({
     formControl: {
       margin: theme.spacing(1),
-      minWidth: 120,
+      minWidth: 180,
     },
     selectEmpty: {
       marginTop: theme.spacing(2),
     },
   }));
   
-  function Selector(props) {
+  const  Selector = (props) => {
     const classes = useStyles();
     const [item, setItem] = React.useState('');
-    const [options] = props;
+    const [options] = React.useState(props.options);
   
     const handleChange = (event) => {
       setItem(event.target.value);
     };
     return (
     <FormControl className={classes.formControl}>
-        <InputLabel id="demo-simple-select-label"></InputLabel>
+        <InputLabel id="simple-select-label">{props.label}</InputLabel>
         <Select
+            isClearable
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             value={item}
             onChange={handleChange}
         >   
         {
-            options.map(option => {
-                return <MenuItem value={option}>{option}</MenuItem>
-            })
+            options.map(option => (
+                <MenuItem value={option}>{option}</MenuItem>
+            ))
         }
         </Select>
     </FormControl>
