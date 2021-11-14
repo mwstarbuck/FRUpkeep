@@ -29,7 +29,7 @@ const teamNumber = [
 ]
 
 const Setup = (props) => {
-    const { classes, setShowSetup } = props;
+    const { classes, setShowSetup, setShowGamePlay } = props;
     return (
         <div>
             <h1>Flamme Rouge Upkeep Setup</h1>
@@ -43,9 +43,12 @@ const Setup = (props) => {
                 />
             </div>
             <div>
-                <Button /*style={{margin: 10 + 'px'}}*/
+                <Button
                     variant="outlined"
                     className={classes.button}
+                    onClick={() => {
+                        setShowGamePlay(true)
+                    }}
                 >
                     Start
                 </Button>

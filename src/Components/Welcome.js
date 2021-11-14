@@ -1,10 +1,6 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import TeamNumSelect from './TeamNumberSelect';
-import Selector from './Selector';
 import Button from '@material-ui/core/Button';
-import { mergeClasses } from '@material-ui/styles';
-import Setup from './Setup';
 
 const styles = theme => ({
   button: {
@@ -30,11 +26,9 @@ const teamNumber = [
 
 function Welcome(props) {
   const { classes, setShowSetup } = props
-  // const [, setShowSetup] = props.setShowSetup;//React.useState(false);
   return (
     <div>
       {
-        // !showSetup ?
         <div>
           <h1>Welcome to Flamme Rouge Upkeep</h1>
           <h3>Click the Setup to setup your game.</h3>
@@ -46,7 +40,6 @@ function Welcome(props) {
             Setup
           </Button>
         </div>
-        // : <Setup setShowSetup={() => { setShowSetup }} />
       }
     </div>
   );
