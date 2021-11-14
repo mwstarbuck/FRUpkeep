@@ -7,8 +7,11 @@ const Game = () => {
     const [showSetup, setShowSetup] = React.useState(false);
     return (
         <div>
-
-            <Welcome />
+            {
+                !showSetup ?
+                    <Welcome setShowSetup={setShowSetup} />
+                    : <Setup setShowSetup={setShowSetup} />
+            }
 
         </div>
     );

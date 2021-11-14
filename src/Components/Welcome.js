@@ -7,49 +7,49 @@ import { mergeClasses } from '@material-ui/styles';
 import Setup from './Setup';
 
 const styles = theme => ({
-    button: {
-      margin: theme.spacing.unit,
-    },
-    input: {
-      display: 'none',
-    },
-  });
+  button: {
+    margin: theme.spacing(0),
+  },
+  input: {
+    display: 'none',
+  },
+});
 
 const teamColors = [
-    'red',
-    'green', 
-    'blue',
-    'black', 
-    'white', 
-    'pink', 
+  'red',
+  'green',
+  'blue',
+  'black',
+  'white',
+  'pink',
 ]
 
 const teamNumber = [
-    1, 2, 3, 4, 5
+  1, 2, 3, 4, 5
 ]
 
 function Welcome(props) {
-    const classes = styles;
-    const [showSetup, setShowSetup] = React.useState(false);
-    return (
+  const { classes, setShowSetup } = props
+  // const [, setShowSetup] = props.setShowSetup;//React.useState(false);
+  return (
+    <div>
+      {
+        // !showSetup ?
         <div>
-            {
-                !showSetup ?
-                <div>
-                <h1>Welcome to Flamme Rouge Upkeep</h1>
-                <h3>Click the Setup to setup your game.</h3>
-                <Button
-                    variant="outlined"
-                    className={classes.button}
-                    onClick={setShowSetup}
-                >
-                Setup
-                </Button>
-                </div>
-                : <Setup setShowSetup={setShowSetup}/>
-            }
-      </div>
-    );
+          <h1>Welcome to Flamme Rouge Upkeep</h1>
+          <h3>Click the Setup to setup your game.</h3>
+          <Button
+            variant="outlined"
+            className={classes.button}
+            onClick={() => setShowSetup(true)}
+          >
+            Setup
+          </Button>
+        </div>
+        // : <Setup setShowSetup={() => { setShowSetup }} />
+      }
+    </div>
+  );
 
 }
 

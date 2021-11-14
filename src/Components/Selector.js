@@ -7,40 +7,39 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
 const useStyles = makeStyles((theme) => ({
-    formControl: {
-      margin: theme.spacing(1),
-      minWidth: 180,
-    },
-    selectEmpty: {
-      marginTop: theme.spacing(2),
-    },
-  }));
-  
-  const  Selector = (props) => {
-    const classes = useStyles();
-    const [item, setItem] = React.useState('');
-    const [options] = React.useState(props.options);
-  
-    const handleChange = (event) => {
-      setItem(event.target.value);
-    };
-    return (
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 180,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
+}));
+
+const Selector = (props) => {
+  const classes = useStyles();
+  const [item, setItem] = React.useState('');
+  const [options] = React.useState(props.options);
+
+  const handleChange = (event) => {
+    setItem(event.target.value);
+  };
+  return (
     <FormControl className={classes.formControl}>
-        <InputLabel id="simple-select-label">{props.label}</InputLabel>
-        <Select
-            isClearable
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={item}
-            onChange={handleChange}
-        >   
+      <InputLabel id="simple-select-label">{props.label}</InputLabel>
+      <Select
+        labelId="demo-simple-select-label"
+        id="demo-simple-select"
+        value={item}
+        onChange={handleChange}
+      >
         {
-            options.map(option => (
-                <MenuItem value={option}>{option}</MenuItem>
-            ))
+          options.map(option => (
+            <MenuItem value={option}>{option}</MenuItem>
+          ))
         }
-        </Select>
+      </Select>
     </FormControl>
-    )
-  }
+  )
+}
 export default Selector;

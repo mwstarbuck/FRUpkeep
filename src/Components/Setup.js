@@ -6,22 +6,22 @@ import { mergeClasses } from '@material-ui/styles';
 
 const styles = theme => ({
     button: {
-      margin: theme.spacing.unit,
-      padding: 5 + 'px'
+        margin: theme.spacing(1),
+        padding: 5 + 'px'
     },
     input: {
-      display: 'none',
+        display: 'none',
     },
-  });
+});
 
 
 const teamColors = [
     'red',
-    'green', 
+    'green',
     'blue',
-    'black', 
-    'white', 
-    'pink', 
+    'black',
+    'white',
+    'pink',
 ]
 
 const teamNumber = [
@@ -29,33 +29,33 @@ const teamNumber = [
 ]
 
 const Setup = (props) => {
-    const {classes, setShowSetup} = props;
+    const { classes, setShowSetup } = props;
     return (
         <div>
             <h1>Flamme Rouge Upkeep Setup</h1>
             <div>
-            <Selector 
-                options={teamNumber}
-                label={'Choose # AI Teams'}/>
-            <Selector 
-                options={teamColors}
-                label={'choose a color...'}
-            />
+                <Selector
+                    options={teamNumber}
+                    label={'Choose # AI Teams'} />
+                <Selector
+                    options={teamColors}
+                    label={'choose a color...'}
+                />
             </div>
             <div>
-            <Button /*style={{margin: 10 + 'px'}}*/
-                variant="outlined"
-                className={classes.button}
-            >
-                Start
-            </Button>
-            <Button 
-                variant="outlined"
-                className={classes.button}
-                onClick={setShowSetup}
-            >
-                Cancel
-            </Button>
+                <Button /*style={{margin: 10 + 'px'}}*/
+                    variant="outlined"
+                    className={classes.button}
+                >
+                    Start
+                </Button>
+                <Button
+                    variant="outlined"
+                    className={classes.button}
+                    onClick={() => setShowSetup(false)}
+                >
+                    Cancel
+                </Button>
             </div>
         </div>
     )
