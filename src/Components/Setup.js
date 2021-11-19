@@ -3,6 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Selector from './Selector';
 import Button from '@material-ui/core/Button';
 import { mergeClasses } from '@material-ui/styles';
+import useGameContainer from '../Containers/GameContainer';
 
 const styles = theme => ({
     button: {
@@ -30,6 +31,8 @@ const teamNumber = [
 
 const Setup = (props) => {
     const { classes, setShowSetup, setShowGamePlay } = props;
+    const [availableTeams] = useGameContainer(state => state.availableTeams, actioons => null); // may make this local send results to container
+    const [numberOfTeams, setNumberOfTeams] = React.useState();
     return (
         <div>
             <h1>Flamme Rouge Upkeep Setup</h1>
@@ -38,7 +41,7 @@ const Setup = (props) => {
                     options={teamNumber}
                     label={'Choose # AI Teams'} />
                 <Selector
-                    options={teamColors}
+                    options={availableTeams}
                     label={'choose a color...'}
                 />
             </div>

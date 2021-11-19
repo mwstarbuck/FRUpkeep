@@ -1,6 +1,7 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import useGameContainer from '../Containers/GameContainer';
 
 const styles = theme => ({
   button: {
@@ -20,12 +21,9 @@ const teamColors = [
   'pink',
 ]
 
-const teamNumber = [
-  1, 2, 3, 4, 5
-]
-
 function Welcome(props) {
   const { classes, setShowSetup } = props
+  // const [showSetup, setShowSetup] = useGameContainer(state => state.showSetup, actions => actions.setShowSetup);
   return (
     <div>
       {

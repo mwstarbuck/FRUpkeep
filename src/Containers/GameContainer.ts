@@ -1,27 +1,31 @@
 import React from 'react';
-import globalHook, {Store} from 'use-global-hook';
+import globalHook, { Store } from 'use-global-hook';
 
-export interface GameState {
+export type GameState = {
+    availableTeams?: Array<object> | any,
     showSetup?: boolean,
-    showGameplay?: boolean
+    showGameplay?: boolean,
+    message?: string
 }
 
-export interface GameActions {
-    setShowSetup: (value: any) => void,
-    setShowGameplay: (value: any) => void
+export type GameActions = {
+    setShowSetup: (value: boolean) => void,
+    setShowGameplay: (value: boolean) => void
 }
 
 const initialState: GameState = {
+    availableTeams: ['Red', 'Green', 'Blue', 'Black', 'White', 'Pink'],
     showSetup: false,
-    showGameplay: false
+    showGameplay: false,
+    message: ''
 }
 
-const setShowSetup = (store: Store<GameState, GameActions>, value: boolean) => {
-    store.setState({showSetup: value});
+const setShowSetup = async (store: Store<GameState, GameActions>, value: boolean) => {
+    store.setState({ showSetup: value });
 }
 
-const setShowGameplay = (store: Store<GameState, GameActions>, value: boolean) => {
-    store.setState({showGameplay: value});
+const setShowGameplay = async (store: Store<GameState, GameActions>, value: boolean) => {
+    store.setState({ showGameplay: value });
 }
 
 const actions = {
