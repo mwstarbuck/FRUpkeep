@@ -9,7 +9,7 @@ import Select from '@material-ui/core/Select';
 const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 180,
+    minWidth: 225,
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
@@ -19,17 +19,24 @@ const useStyles = makeStyles((theme) => ({
 const Selector = (props) => {
   const classes = useStyles();
   const [item, setItem] = React.useState('');
-  const [options] = React.useState(props.options);
+  // const [options] = React.useState(props.options);
+  const { options, func, id } = props;
 
   const handleChange = (event) => {
     setItem(event.target.value);
+    if (func) {
+      if (isNaN(id))
+        func(event.target.value)
+      else
+        func(id, event.target.value)
+    }
   };
   return (
     <FormControl className={classes.formControl}>
       <InputLabel id="simple-select-label">{props.label}</InputLabel>
       <Select
         labelId="demo-simple-select-label"
-        id="demo-simple-select"
+        id={id}
         value={item}
         onChange={handleChange}
       >
