@@ -41,7 +41,7 @@ const Setup = (props) => {
       if (i === 0) {
         team.type = 'peloton';
         team.number = i;
-        // team.color
+        // team.color added below when color selected
       }
       else {
         team.type = 'muscle'
