@@ -4,27 +4,27 @@ import { shuffle, mix } from '../Utilities/Shuffle';
 export const ROULEUR_SETUP = [
   {
     number: 3,
-    ridertype: 'rouleur',
+    riderType: 'rouleur',
     movement: '3'
   },
   {
     number: 3,
-    ridertype: 'rouleur',
+    riderType: 'rouleur',
     movement: '4'
   },
   {
     number: 3,
-    ridertype: 'rouleur',
+    riderType: 'rouleur',
     movement: '5'
   },
   {
     number: 3,
-    ridertype: 'rouleur',
+    riderType: 'rouleur',
     movement: '6'
   },
   {
     number: 3,
-    ridertype: 'rouleur',
+    riderType: 'rouleur',
     movement: '7'
   }
 ];
@@ -32,38 +32,38 @@ export const ROULEUR_SETUP = [
 export const SPRINTER_SETUP = [
   {
     number: 3,
-    ridertype: 'sprinter',
+    riderType: 'sprinter',
     movement: '2'
   },
   {
     number: 3,
-    ridertype: 'sprinter',
+    riderType: 'sprinter',
     movement: '3'
   },
   {
     number: 3,
-    ridertype: 'sprinter',
+    riderType: 'sprinter',
     movement: '4'
   },
   {
     number: 3,
-    ridertype: 'sprinter',
+    riderType: 'sprinter',
     movement: '5'
   },
   {
     number: 3,
-    ridertype: 'sprinter',
+    riderType: 'sprinter',
     movement: '9'
   }
 ];
 
-const ATTACK_CARD = {
+export const ATTACK_CARD = {
   number: 2,
   riderType: 'rouleur',
   movement: '2 > 9'
 }
 
-const MUSCLE_CARD = {
+export const MUSCLE_CARD = {
   number: 1,
   riderType: 'sprinter',
   movement: '5'
@@ -72,31 +72,40 @@ const MUSCLE_CARD = {
 let rouleurCards = [];
 let sprinterCards = [];
 
-export function createDeckOfCards(setup, cards) {
-  setup.forEach(c => {
+export function createDeckOfCards(setup, type) {
+  let tempSet = [...setup];
+  let deck = [];
+  if (type === 'peloton') {
+    tempSet.push(ATTACK_CARD);
+  }
+  else {
+    tempSet.push(MUSCLE_CARD);
+  }
+  tempSet.forEach(c => {
     for (let i = 0; i < c.number; i++) {
       let card = new Object();
       card.movement = c.movement;
-      card.type = c.ridertype;
-      cards.push(card);
+      card.type = c.riderType;
+      deck.push(card);
     }
   })
+  return deck;
 };
-createDeckOfCards(ROULEUR_SETUP, rouleurCards);
-createDeckOfCards(SPRINTER_SETUP, sprinterCards);
+rouleurCards = createDeckOfCards(ROULEUR_SETUP);
+sprinterCards = createDeckOfCards(SPRINTER_SETUP);
 
-let shuffledDeck = [];
-let redRouleurCards = [...rouleurCards];
-mix(redRouleurCards, shuffledDeck)
-redRouleurCards = [...shuffledDeck];
-shuffledDeck = [];
-let blueRouleurCards = [...rouleurCards];
-mix(blueRouleurCards, shuffledDeck)
-blueRouleurCards = [...shuffledDeck];
-console.log(redRouleurCards);
-console.log(blueRouleurCards);
-console.log(rouleurCards);
-for (let i = 0; i < 7; i++) {
-  redRouleurCards = shuffle(redRouleurCards);
-}
+// let shuffledDeck = [];
+// let redRouleurCards = [...rouleurCards];
+// mix(redRouleurCards, shuffledDeck)
+// redRouleurCards = [...shuffledDeck];
+// shuffledDeck = [];
+// let blueRouleurCards = [...rouleurCards];
+// mix(blueRouleurCards, shuffledDeck)
+// blueRouleurCards = [...shuffledDeck];
+// console.log(redRouleurCards);
+// console.log(blueRouleurCards);
+// console.log(rouleurCards);
+// for (let i = 0; i < 7; i++) {
+//   redRouleurCards = shuffle(redRouleurCards);
+// }
 

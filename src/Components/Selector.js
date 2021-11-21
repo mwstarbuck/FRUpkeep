@@ -35,14 +35,15 @@ const Selector = (props) => {
     <FormControl className={classes.formControl}>
       <InputLabel id="simple-select-label">{props.label}</InputLabel>
       <Select
+        key={id}
         labelId="demo-simple-select-label"
-        id={id}
+        id={id ? id.toString() : null}
         value={item}
         onChange={handleChange}
       >
         {
-          options.map(option => (
-            <MenuItem value={option}>{option}</MenuItem>
+          options.map((option, index) => (
+            <MenuItem key={index} value={option}>{option}</MenuItem>
           ))
         }
       </Select>

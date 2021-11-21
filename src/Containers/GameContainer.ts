@@ -1,7 +1,7 @@
 import React from 'react';
 import globalHook, { Store } from 'use-global-hook';
 import TeamNumSelect from '../Components/TeamNumberSelect';
-import { createDeckOfCards, ROULEUR_SETUP, SPRINTER_SETUP } from '../Data/Data';
+import { createDeckOfCards, ROULEUR_SETUP, SPRINTER_SETUP, ATTACK_CARD, MUSCLE_CARD } from '../Data/Data';
 // import Shuffle from '../Utilities/Shuffle';
 export interface Card {
   type: string | any,
@@ -49,24 +49,42 @@ const setShowGameplay = async (store: Store<GameState, GameActions>, value: bool
 }
 
 const createDecks = async (store: Store<GameState, GameActions>, details: any) => {
-  details.forEach((element: { type: string; }) => {
-    let teams: Array<Team> = [];
+  let teams: Array<Team> = [];
+
+  details.forEach((element: any) => {
     let rouleurDeck: Array<object> = [];
     let sprinterDeck = [];
-    let team: Team;
-    // team.type = element.type;
+    let team: Team = {
+      type: '',
+      number: null,
+      color: '',
+      rouleurDeck: [],
+      rouleurDiscards: [],
+      sprinterDeck: [],
+      sprinterDiscards: []
+    }
+    team.type = element.type;
+    team.number = element.number;
+    team.color = element.color;
+
     if (element.type === 'peloton') {
-
-      createDeckOfCards(ROULEUR_SETUP, rouleurDeck)
-
-
+      team.rouleurDeck = createDeckOfCards(ROULEUR_SETUP, element.type);
+      teams.push(team);
+    }
+    else {
+      team.rouleurDeck = createDeckOfCards(ROULEUR_SETUP, element.type);
+      team.sprinterDeck = createDeckOfCards(SPRINTER_SETUP, element.type);
+      teams.push(team);
     }
   });
+  store.setState({ computerTeams: teams })
+  console.log(store.state.computerTeams)
 }
 
 const actions = {
   setShowSetup,
-  setShowGameplay
+  setShowGameplay,
+  createDecks
 }
 
 const useGameContainer = globalHook<GameState, GameActions>(React, initialState, actions);
