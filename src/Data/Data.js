@@ -89,6 +89,13 @@ export function createDeckOfCards(setup, type) {
       deck.push(card);
     }
   })
+  tempSet = [];
+  deck = mix(deck);
+  // deck = [...tempSet];
+
+  // for (let i = 0; i < 7; i++) {
+  //   deck = shuffle(deck);
+  // }
   return deck;
 };
 rouleurCards = createDeckOfCards(ROULEUR_SETUP);

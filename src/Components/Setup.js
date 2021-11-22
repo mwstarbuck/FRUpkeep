@@ -47,7 +47,6 @@ const Setup = (props) => {
       else {
         team.type = 'muscle'
         team.number = i;
-        // team.color
       }
       arr.push(team);
     }
