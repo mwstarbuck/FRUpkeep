@@ -69,6 +69,11 @@ export const MUSCLE_CARD = {
   movement: '5'
 }
 
+export const EXHAUSTION_CARD = {
+  type: 'any',
+  movement: '2'
+}
+
 let rouleurCards = [];
 let sprinterCards = [];
 

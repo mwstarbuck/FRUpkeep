@@ -1,7 +1,7 @@
 import React from 'react';
 import globalHook, { Store } from 'use-global-hook';
 import TeamNumSelect from '../Components/TeamNumberSelect';
-import { createDeckOfCards, ROULEUR_SETUP, SPRINTER_SETUP, ATTACK_CARD, MUSCLE_CARD } from '../Data/Data';
+import { createDeckOfCards, ROULEUR_SETUP, SPRINTER_SETUP, EXHAUSTION_CARD } from '../Data/Data';
 // import Shuffle from '../Utilities/Shuffle';
 export interface Card {
   type: string | any,
@@ -9,13 +9,13 @@ export interface Card {
 }
 
 export interface Team {
-  type: string | any,
-  number: number | any,
-  color: string | any
-  rouleurDeck: Array<Card> | any,
-  rouleurDiscards: Array<Card> | any,
-  sprinterDeck: Array<Card> | any,
-  sprinterDiscards: Array<Card> | any
+  type?: string | any,
+  number?: number | any,
+  color?: string | any
+  rouleurDeck?: Array<Card> | any,
+  rouleurDiscards?: Array<Card> | any,
+  sprinterDeck?: Array<Card> | any,
+  sprinterDiscards?: Array<Card> | any
 }
 
 export type GameState = {
@@ -29,7 +29,8 @@ export type GameState = {
 export type GameActions = {
   setShowSetup: (value: boolean) => void,
   setShowGameplay: (value: boolean) => void,
-  createDecks: (details: any) => void
+  createDecks: (details: any) => void,
+  drawCards: () => void
 }
 
 const initialState: GameState = {
@@ -81,10 +82,34 @@ const createDecks = async (store: Store<GameState, GameActions>, details: any) =
   console.log(store.state.computerTeams)
 }
 
+const drawCards = async (store: Store<GameState, GameActions>) => {
+  let teams = [...store.state.computerTeams];
+  teams.forEach((team: Team) => {
+    let topCard = {};
+    if (team.rouleurDeck.length !== 0) {
+      topCard = team.rouleurDeck.shift();
+      team.rouleurDiscards.unshift(topCard);
+    }
+    else {
+      team.rouleurDiscards.unshift(EXHAUSTION_CARD);
+    }
+    if (team.type != 'peloton') {
+      if (team.sprinterDeck.length != 0) {
+        topCard = team.sprinterDeck.shift();
+        team.sprinterDiscards.unshift(topCard);
+      }
+      else {
+        team.sprinterDiscards.unshift(EXHAUSTION_CARD);
+      }
+    }
+  });
+  store.setState({ computerTeams: teams });
+}
 const actions = {
   setShowSetup,
   setShowGameplay,
-  createDecks
+  createDecks,
+  drawCards
 }
 
 const useGameContainer = globalHook<GameState, GameActions>(React, initialState, actions);
