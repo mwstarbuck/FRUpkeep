@@ -32,8 +32,9 @@ const teamNumber = [
 
 const Setup = (props) => {
   const { classes, setShowSetup, setShowGamePlay } = props;
-  const [availableTeams] = useGameContainer(state => state.availableTeams, actioons => null); // may make this local send results to container
+  const [availableTeams] = useGameContainer(state => state.availableTeams, actions => null); // may make this local send results to container
   const [numberOfTeams, setNumberOfTeams] = React.useState();
+  const [, createDecks] = useGameContainer(state => null, actions => actions.createDecks);
 
   const createTeamDetailsSection = (arr) => {
     for (let i = 0; i < numberOfTeams; i++) {
@@ -41,12 +42,11 @@ const Setup = (props) => {
       if (i === 0) {
         team.type = 'peloton';
         team.number = i;
-        // team.color
+        // team.color added below when color selected
       }
       else {
         team.type = 'muscle'
         team.number = i;
-        // team.color
       }
       arr.push(team);
     }
@@ -69,6 +69,7 @@ const Setup = (props) => {
         <Grid item sm={12}>
           <div>
             <Selector
+              key={10}
               options={teamNumber}
               label={'Choose # AI Teams'}
               func={setNumberOfTeams} />
@@ -94,7 +95,8 @@ const Setup = (props) => {
               variant="outlined"
               className={classes.button}
               onClick={() => {
-                setShowGamePlay(true)
+                createDecks(teamComponents);
+                setShowGamePlay(true);
               }}
             >
               Start
