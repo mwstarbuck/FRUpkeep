@@ -31,10 +31,6 @@ const TeamPanel = () => {
                       remainingCards={team.rouleurDiscards.length}
                       riderType="Rouleur"
                       movementValue={team.rouleurDiscards.length > 0 ? team.rouleurDiscards[0].movement : null} />
-                    {/* <div style={{ height: '100%', width: '100%', display: 'inline-flex', justifyContent: 'center', border: 2 + `px solid ${team.color == 'White' ? 'black' : 'white'}` }}>
-                      <div style={{ height: 150 + 'px', width: 100 + 'px', margin: 10 + 'px', border: 2 + `px solid ${team.color == 'White' ? 'black' : 'white'}`, borderRadius: 5 + 'px' }}><h5>Deck</h5> <h3>{team.rouleurDiscards.length > 0 ? team.rouleurDiscards[0].movement : null}</h3></div>
-                      <div style={{ height: 150 + 'px', width: 100 + 'px', margin: 10 + 'px', border: 2 + `px solid ${team.color == 'White' ? 'black' : 'white'}`, borderRadius: 5 + 'px' }}><h5>Discard Pile</h5><h3></h3></div>
-                    </div> */}
                   </Grid>
                   <Grid item sm={4}>
                     {team.type != 'peloton' ?
@@ -43,10 +39,6 @@ const TeamPanel = () => {
                         remainingCards={team.sprinterDiscards.length}
                         riderType="Sprinter"
                         movementValue={team.sprinterDiscards.length > 0 ? team.sprinterDiscards[0].movement : null} />
-                      // <div style={{ height: '100%', width: '100%', display: 'inline-flex', justifyContent: 'center', border: 2 + `px solid ${team.color == 'White' ? 'black' : 'white'}` }}>
-                      //   <div style={{ height: 150 + 'px', width: 100 + 'px', margin: 10 + 'px', border: 2 + `px solid ${team.color == 'White' ? 'black' : 'white'}`, borderRadius: 5 + 'px' }}><h5>Deck</h5> <h3>{team.sprinterDiscards.length > 0 ? team.sprinterDiscards[0].movement : null}</h3></div>
-                      //   <div style={{ height: 150 + 'px', width: 100 + 'px', margin: 10 + 'px', border: 2 + `px solid ${team.color == 'White' ? 'black' : 'white'}`, borderRadius: 5 + 'px' }}><h5>Discard Pile</h5><h3></h3></div>
-                      // </div>
                       : null
                     }
                   </Grid>
