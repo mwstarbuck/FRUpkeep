@@ -4,6 +4,7 @@ import { Button, Grid } from '@material-ui/core';
 import { capitalize, lower } from '../Utilities/TextHelper';
 import TeamInfoPanel from './TeamInfoPanel';
 import { TEAM_COLORS } from '../Data/TeamColors';
+import TeamRiderPanel from './TeamRiderPanel';
 
 
 const TeamPanel = () => {
@@ -15,6 +16,7 @@ const TeamPanel = () => {
       <Grid container>
         {
           teams.map((team, index) => {
+
             return (
               <Grid item sm={6} style={{ /*backgroundImage: 'url(/images/black.png)'*/ backgroundColor: TEAM_COLORS[team.color], color: team.color === 'White' ? 'black' : 'white' }}>
                 <Grid container>
@@ -25,19 +27,19 @@ const TeamPanel = () => {
                       numberOfCards={team.rouleurDeck.length} />
                   </Grid>
                   <Grid item sm={4}>
-                    <div style={{ height: '100%', width: '100%', display: 'inline-flex', justifyContent: 'center', border: 2 + `px solid ${team.color == 'White' ? 'black' : 'white'}` }}>
-                      Rouleur
-                      <div style={{ height: 150 + 'px', width: 100 + 'px', margin: 10 + 'px', border: 2 + `px solid ${team.color == 'White' ? 'black' : 'white'}`, borderRadius: 5 + 'px' }}><h5>Deck</h5> <h3>{team.rouleurDiscards.length > 0 ? team.rouleurDiscards[0].movement : null}</h3></div>
-                      <div style={{ height: 150 + 'px', width: 100 + 'px', margin: 10 + 'px', border: 2 + `px solid ${team.color == 'White' ? 'black' : 'white'}`, borderRadius: 5 + 'px' }}><h5>Discard Pile</h5><h3></h3></div>
-                    </div>
+                    <TeamRiderPanel
+                      color={team.color}
+                      remainingCards={team.rouleurDiscards.length}
+                      riderType="Rouleur"
+                      movementValue={team.rouleurDiscards.length > 0 ? team.rouleurDiscards[0].movement : null} />
                   </Grid>
                   <Grid item sm={4}>
                     {team.type != 'peloton' ?
-                      <div style={{ height: '100%', width: '100%', display: 'inline-flex', justifyContent: 'center', border: 2 + `px solid ${team.color == 'White' ? 'black' : 'white'}` }}>
-                        Sprinter
-                        <div style={{ height: 150 + 'px', width: 100 + 'px', margin: 10 + 'px', border: 2 + `px solid ${team.color == 'White' ? 'black' : 'white'}`, borderRadius: 5 + 'px' }}><h5>Deck</h5> <h3>{team.sprinterDiscards.length > 0 ? team.sprinterDiscards[0].movement : null}</h3></div>
-                        <div style={{ height: 150 + 'px', width: 100 + 'px', margin: 10 + 'px', border: 2 + `px solid ${team.color == 'White' ? 'black' : 'white'}`, borderRadius: 5 + 'px' }}><h5>Discard Pile</h5><h3></h3></div>
-                      </div>
+                      <TeamRiderPanel
+                        color={team.color}
+                        remainingCards={team.sprinterDiscards.length}
+                        riderType="Sprinter"
+                        movementValue={team.sprinterDiscards.length > 0 ? team.sprinterDiscards[0].movement : null} />
                       : null
                     }
                   </Grid>
