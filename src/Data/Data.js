@@ -106,18 +106,5 @@ export function createDeckOfCards(setup, type) {
 rouleurCards = createDeckOfCards(ROULEUR_SETUP);
 sprinterCards = createDeckOfCards(SPRINTER_SETUP);
 
-// let shuffledDeck = [];
-// let redRouleurCards = [...rouleurCards];
-// mix(redRouleurCards, shuffledDeck)
-// redRouleurCards = [...shuffledDeck];
-// shuffledDeck = [];
-// let blueRouleurCards = [...rouleurCards];
-// mix(blueRouleurCards, shuffledDeck)
-// blueRouleurCards = [...shuffledDeck];
-// console.log(redRouleurCards);
-// console.log(blueRouleurCards);
-// console.log(rouleurCards);
-// for (let i = 0; i < 7; i++) {
-//   redRouleurCards = shuffle(redRouleurCards);
-// }
+
 
