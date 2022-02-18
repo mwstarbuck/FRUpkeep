@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import useGameContainer from '../Containers/GameContainer';
 import { Button, Grid } from '@material-ui/core';
 import { capitalize, lower } from '../Utilities/TextHelper';
+import { TEAM_COLORS } from '../Data/TeamColors';
 
 const TeamInfoPanel = (props) => {
   const { color, teamType, numberOfCards } = props;
