@@ -21,23 +21,25 @@ const GamePlay = (props) => {
     <div>
       <div>This is the Game Play Screen</div>
       <TeamPanel />
-      <Button
-        variant="outlined"
-        onClick={() => {
-          drawCards()
-        }
-        }>
-        Draw Cards
-      </Button>
-      <Button
-        variant="outlined"
-        onClick={() => {
-          setShowGamePlay(false);
-          setShowSetup(false);
-        }
-        }>
-        End Game
-      </Button>
+      <div style={{ marginTop: '25px' }}>
+        <Button
+          variant="outlined"
+          onClick={() => {
+            drawCards()
+          }
+          }>
+          Draw Cards
+        </Button>
+        <Button
+          variant="outlined"
+          onClick={() => {
+            setShowGamePlay(false);
+            setShowSetup(false);
+          }
+          }>
+          End Game
+        </Button>
+      </div>
     </div>
   )
 }
